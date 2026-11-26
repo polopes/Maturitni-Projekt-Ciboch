@@ -108,3 +108,29 @@ def get_random_pipes(xpos):
 pygame.init()
 screen = pygame.display.set_mode((SCREEN_WIDHT, SCREEN_HEIGHT))
 pygame.display.set_caption('Flappy Bird')
+
+BACKGROUND = pygame.image.load('assets/sprites/background-day.png')
+BACKGROUND = pygame.transform.scale(BACKGROUND, (SCREEN_WIDHT, SCREEN_HEIGHT))
+BEGIN_IMAGE = pygame.image.load('assets/sprites/message.png').convert_alpha()
+
+bird_group = pygame.sprite.Group()
+bird = Bird()
+bird_group.add(bird)
+
+ground_group = pygame.sprite.Group()
+
+for i in range (2):
+    ground = Ground(GROUND_WIDHT * i)
+    ground_group.add(ground)
+
+pipe_group = pygame.sprite.Group()
+for i in range (2):
+    pipes = get_random_pipes(SCREEN_WIDHT * i + 800)
+    pipe_group.add(pipes[0])
+    pipe_group.add(pipes[1])
+
+
+
+clock = pygame.time.Clock()
+
+begin = True
